@@ -1,16 +1,18 @@
-'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Image from 'next/image';
+
+interface ImageData {
+  imageUrl: string;
+}
 
 const Features: React.FC = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<ImageData[]>([]);
 
   useEffect(() => {
     axios.get('https://api.testvalley.kr/main-shortcut/all')
       .then(response => {
         setData(response.data);
-        console.log('the data is fetched', data)
+        console.log('the data is fetched', data);
       })
       .catch(error => {
         console.error('Error fetching image data:', error);

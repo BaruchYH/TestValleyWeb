@@ -58,7 +58,7 @@ const ListWrapper = ({ data }: ListWrapperProps) => {
                 height={174}
                 style={{ width: '12px', height: '12px' }}
               />
-              <p>{item.star}</p>
+              <p>{item.rating}</p>
             </div>
           </div>
         ))}
