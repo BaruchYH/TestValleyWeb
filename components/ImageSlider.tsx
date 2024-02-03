@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -27,6 +26,16 @@ const ImageSlider: React.FC = () => {
     setActiveCircleIndex(currentImageIndex);
   }, [currentImageIndex]);
 
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.length);
+    }, 4000); 
+
+    return () => {
+      clearInterval(slideInterval);
+    };
+  }, [data.length]);
+
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
@@ -36,15 +45,13 @@ const ImageSlider: React.FC = () => {
   };
 
   return (
-
     <div className="w-full h-auto grid grid-flow-col grid-cols-8 gap-10  bg-white opacity-85 ">
       <div className='relative col-span-1'>
-      <img
-              src={data[(currentImageIndex - 1 + data.length) % data.length]?.pcImageUrl || ''}
-              alt={`Image ${currentImageIndex + 1}`}
-              className="h-full w-full object-cover"
-            />
-
+        <img
+          src={data[(currentImageIndex - 1 + data.length) % data.length]?.pcImageUrl || ''}
+          alt={`Image ${currentImageIndex + 1}`}
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="relative col-span-6 bg-black ">
         {data.length > 0 && (
@@ -52,7 +59,7 @@ const ImageSlider: React.FC = () => {
             <img
               src={data[currentImageIndex]?.pcImageUrl || ''}
               alt={`Image ${currentImageIndex + 1}`}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-opacity duration-500"
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {data.map((_, index) => (
@@ -79,14 +86,12 @@ const ImageSlider: React.FC = () => {
         </button>
       </div>
       <div className='relative col-span-1 bg-black w-full'>
-      <img
-              src={data[(currentImageIndex + 1) % data.length]?.pcImageUrl || ''}
-              alt={`Image ${currentImageIndex + 1}`}
-              className="h-full w-full object-cover"
-            />
-
+        <img
+          src={data[(currentImageIndex + 1) % data.length]?.pcImageUrl || ''}
+          alt={`Image ${currentImageIndex + 1}`}
+          className="h-full w-full object-cover"
+        />
       </div>
-
     </div>
   );
 };

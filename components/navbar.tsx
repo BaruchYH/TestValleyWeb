@@ -20,7 +20,7 @@ export default function TOP() {
 
     return (
         <div className="flex justify-between items-center bg-white w-full h-20 px-44 border-b-2 border-b-[EEEEEE}">
-            <div className="flex gap-3 justify-start items-center">
+            <div className="flex gap-3 justify-start items-center cursor-pointer">
                 <Image
                     src="/logo.svg"
                     alt="logo"
@@ -50,7 +50,7 @@ export default function TOP() {
                     <Image width={20} height={20} src={'/search-normal.svg'} alt="placeholder-icon" />
                 </div>
             </div>
-            <div className="items-center">
+            <div className="items-center cursor-pointer">
                 <Image
                     src="/down-arrow.png"
                     alt="downarrow"
